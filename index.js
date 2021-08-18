@@ -3,11 +3,13 @@ for (var i = 0; i < range; i++) {
     document.querySelectorAll("button")[i].addEventListener("click", function () {
         var innerHTML = this.innerHTML;
         playAudio(innerHTML);
+        playAnimation(innerHTML);
     });
 }
 
 document.addEventListener('keydown', function(e) {
     playAudio(e.key); 
+    playAnimation(e.key);
 });
 
 function playAudio(key){
@@ -47,3 +49,12 @@ function playAudio(key){
     }
 }
 
+function playAnimation(key)
+{
+    var activeButton = document.querySelector("."+key);
+    activeButton.classList.add("pressed");
+
+    setTimeout(function(){
+        activeButton.classList.remove("pressed");
+    }, 100);
+}
